@@ -12,8 +12,10 @@ go:
 
 script:
   - export GO111MODULE=on
-  - protoc --version
+  - echo $PATH
+  - echo
   - go get ./...
+  - go get github.com/googleapis/gnostic
   - go test -v ./... -race -coverprofile=coverage.txt -covermode=atomic
 
 after_success:
