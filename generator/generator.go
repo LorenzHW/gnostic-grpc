@@ -15,6 +15,7 @@
 package generator
 
 import (
+	"fmt"
 	"log"
 	"os/exec"
 	"path"
@@ -501,6 +502,16 @@ func getFieldDescriptorType(nativeType string, enumValues []string) *dpb.FieldDe
 func createOpenAPIDocFromGnosticOutput(binaryInput []byte) (*openapiv3.Document, error) {
 	document := &openapiv3.Document{}
 	err := proto.Unmarshal(binaryInput, document)
+	if err != nil {
+		fmt.Println("No Error during Unmarshal")
+		fmt.Println(binaryInput)
+		fmt.Println(document.Info)
+		fmt.Println(document.Components)
+	} else {
+		fmt.Println("Error during unmarshalling")
+		fmt.Println(err)
+	}
+
 	if err != nil {
 		// If we execute gnostic with argument: '-pb-out=-' we get an EOF. So lets only return other errors.
 		if err.Error() != "unexpected EOF" {
