@@ -21,21 +21,21 @@ import (
 	"testing"
 )
 
-//func TestNewFeatureCheckerParameters(t *testing.T) {
-//	input := "testfiles/parameters.yaml"
-//	documentv3 := readOpenAPIBinary(input)
-//
-//	checker := NewGrpcChecker(documentv3)
-//	messages := checker.Run()
-//	expectedMessageKeys := [][]string{
-//		{"paths", "/testParameterQueryEnum", "get", "parameters", "explode"},
-//		{"paths", "/testParameterQueryEnum", "get", "parameters", "schema", "items", "default"},
-//		{"paths", "/testParameterQueryEnum", "get", "parameters", "schema", "items", "enum"},
-//		{"paths", "/testParameterPathEnum/{param1}", "get", "parameters", "schema", "default"},
-//		{"paths", "/testParameterPathEnum/{param1}", "get", "parameters", "schema", "enum"},
-//	}
-//	validateKeys(t, expectedMessageKeys, messages)
-//}
+func TestNewFeatureCheckerParameters(t *testing.T) {
+	input := "testfiles/parameters.yaml"
+	documentv3 := readOpenAPIBinary(input)
+
+	checker := NewGrpcChecker(documentv3)
+	messages := checker.Run()
+	expectedMessageKeys := [][]string{
+		{"paths", "/testParameterQueryEnum", "get", "parameters", "explode"},
+		{"paths", "/testParameterQueryEnum", "get", "parameters", "schema", "items", "default"},
+		{"paths", "/testParameterQueryEnum", "get", "parameters", "schema", "items", "enum"},
+		{"paths", "/testParameterPathEnum/{param1}", "get", "parameters", "schema", "default"},
+		{"paths", "/testParameterPathEnum/{param1}", "get", "parameters", "schema", "enum"},
+	}
+	validateKeys(t, expectedMessageKeys, messages)
+}
 
 func TestFeatureCheckerRequestBodies(t *testing.T) {
 	input := "testfiles/requestBodies.yaml"

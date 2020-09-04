@@ -46,7 +46,7 @@ func (c *GrpcChecker) analyzeOpenAPIDocument() {
 		c.messages = append(c.messages, &msg)
 	}
 	c.analyzeComponents()
-	c.analyzePaths()
+	//c.analyzePaths()
 }
 
 // Analyzes the components of a OpenAPI description.
