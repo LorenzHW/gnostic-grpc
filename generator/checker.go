@@ -15,6 +15,7 @@
 package generator
 
 import (
+	"fmt"
 	openapiv3 "github.com/googleapis/gnostic/openapiv3"
 	plugins "github.com/googleapis/gnostic/plugins"
 )
@@ -93,11 +94,19 @@ func (c *GrpcChecker) analyzeComponents() {
 // Analyzes all paths.
 func (c *GrpcChecker) analyzePaths() {
 	currentKeys := []string{"paths"}
-	paths := c.document.Paths
-	if paths != nil {
-		for _, pathItem := range c.document.Paths.Path {
-			c.analyzePathItem(pathItem, currentKeys)
-		}
+	if c.document.Paths == nil {
+		fmt.Println("Paths is nil")
+	}
+	if c.document.Components == nil {
+		fmt.Println("Components is nil")
+	}
+
+	if c.document.Info == nil {
+		fmt.Println("Info is nil")
+	}
+
+	for _, pathItem := range c.document.Paths.Path {
+		c.analyzePathItem(pathItem, currentKeys)
 	}
 }
 
