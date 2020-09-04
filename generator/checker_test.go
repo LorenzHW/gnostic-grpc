@@ -15,6 +15,7 @@
 package generator
 
 import (
+	"fmt"
 	openapiv3 "github.com/googleapis/gnostic/openapiv3"
 	plugins "github.com/googleapis/gnostic/plugins"
 	"os/exec"
@@ -98,7 +99,11 @@ func validateKeys(t *testing.T, expectedKeys [][]string, messages []*plugins.Mes
 
 func readOpenAPIBinary(input string) *openapiv3.Document {
 	cmd := exec.Command("gnostic", "--pb-out=-", input)
-	b, _ := cmd.Output()
+	b, err := cmd.Output()
+	if err != nil {
+		fmt.Println("Error reading gnostic output")
+		fmt.Println(err)
+	}
 	documentv3, _ := createOpenAPIDocFromGnosticOutput(b)
 	return documentv3
 }
