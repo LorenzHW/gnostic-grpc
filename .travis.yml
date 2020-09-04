@@ -7,8 +7,10 @@ sudo: false
 
 language: go
 
+go:
+- "1.13"
+
 script:
-  - go get github.com/googleapis/gnostic
   - go test -v ./... -race -coverprofile=coverage.txt -covermode=atomic
 
 after_success:
