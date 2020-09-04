@@ -12,6 +12,7 @@ go:
 
 script:
   - export GO111MODULE=on
+  - protoc --version
   - go get ./...
   - go test -v ./... -race -coverprofile=coverage.txt -covermode=atomic
 
