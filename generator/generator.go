@@ -502,7 +502,7 @@ func getFieldDescriptorType(nativeType string, enumValues []string) *dpb.FieldDe
 func createOpenAPIDocFromGnosticOutput(binaryInput []byte) (*openapiv3.Document, error) {
 	document := &openapiv3.Document{}
 	err := proto.Unmarshal(binaryInput, document)
-	if err != nil {
+	if err == nil {
 		fmt.Println("No Error during Unmarshal")
 		fmt.Println(binaryInput)
 		fmt.Println(document.Info)
