@@ -46,7 +46,7 @@ func (c *GrpcChecker) analyzeOpenAPIDocument() {
 		c.messages = append(c.messages, &msg)
 	}
 	c.analyzeComponents()
-	//c.analyzePaths()
+	c.analyzePaths()
 }
 
 // Analyzes the components of a OpenAPI description.
@@ -93,8 +93,11 @@ func (c *GrpcChecker) analyzeComponents() {
 // Analyzes all paths.
 func (c *GrpcChecker) analyzePaths() {
 	currentKeys := []string{"paths"}
-	for _, pathItem := range c.document.Paths.Path {
-		c.analyzePathItem(pathItem, currentKeys)
+	paths := c.document.Paths
+	if paths != nil {
+		for _, pathItem := range c.document.Paths.Path {
+			c.analyzePathItem(pathItem, currentKeys)
+		}
 	}
 }
 
